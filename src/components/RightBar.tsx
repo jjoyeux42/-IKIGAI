@@ -225,10 +225,12 @@ const DailyQuestsSection = () => {
     <article className="flex flex-col gap-4 rounded-2xl border-2 border-gray-200 p-4 md:p-6 font-bold text-gray-700 bg-white shadow-sm hover:shadow-md transition-all duration-300">
       <h2 className="text-base md:text-lg">Quêtes quotidiennes</h2>
       <div className="flex items-center gap-3 md:gap-4">
-        <LightningProgressSvg className="w-8 h-8 md:w-10 md:h-10" />
-        <div className="flex flex-col gap-2">
-          <h3 className="text-sm md:text-base">Gagnez {goalXp} XP</h3>
-          <div className="flex items-center">
+        <div className="w-8 h-8 md:w-10 md:h-10">
+          <LightningProgressSvg />
+          </div>
+            <div className="flex flex-col gap-2">
+            <h3 className="text-sm md:text-base">Gagnez {goalXp} XP</h3>
+            <div className="flex items-center">
             <div className="relative h-4 md:h-5 w-36 sm:w-40 md:w-52 rounded-l-full bg-gray-200">
               <div
                 className={[
