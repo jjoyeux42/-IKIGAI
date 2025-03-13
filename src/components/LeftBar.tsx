@@ -1,199 +1,162 @@
+import React from "react";
 import Link from "next/link";
-import type { ComponentProps } from "react";
-import React, { useState } from "react";
-import type { Tab } from "./BottomBar";
-import { useBottomBarItems } from "./BottomBar";
-import type { LoginScreenState } from "./LoginScreen";
-import { LoginScreen } from "./LoginScreen";
-import { useBoundStore } from "~/hooks/useBoundStore";
+import { StarSvg } from "./Svgs";
 
-const LeftBarMoreMenuSvg = (props: ComponentProps<"svg">) => {
+type ActiveTab = "Apprendre" | "Profile" | "Leaderboards" | null;
+
+export const LeftBar = ({ selectedTab }: { selectedTab: ActiveTab }) => {
   return (
-    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" {...props}>
-      <circle
-        cx="23"
-        cy="23"
-        r="19"
-        fill="#41D185"
-        stroke="#41D185"
-        strokeWidth="2"
-      />
-      <circle cx="15" cy="23" r="2" fill="white" />
-      <circle cx="23" cy="23" r="2" fill="white" />
-      <circle cx="31" cy="23" r="2" fill="white" />
-    </svg>
-  );
-};
-
-// Icônes personnalisées pour IKIGAI
-const SupportIconSvg = (props: ComponentProps<"svg">) => {
-  return (
-    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" {...props}>
-      <circle cx="23" cy="23" r="19" fill="#4EAAF0" stroke="#4EAAF0" strokeWidth="2" />
-      <path d="M23 14C19.13 14 16 17.13 16 21H19C19 18.79 20.79 17 23 17C25.21 17 27 18.79 27 21C27 22.15 26.37 23.59 25.23 24.74L24.71 25.25C23.64 26.33 23 27.63 23 29V30H26V29C26 28.36 26.32 27.77 26.88 27.21L27.41 26.67C29.07 25.01 30 22.85 30 21C30 17.13 26.87 14 23 14ZM22 31V34H26V31H22Z" fill="white"/>
-    </svg>
-  );
-};
-
-const InfoIconSvg = (props: ComponentProps<"svg">) => {
-  return (
-    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" {...props}>
-      <circle cx="23" cy="23" r="19" fill="#FF8747" stroke="#FF8747" strokeWidth="2" />
-      <path d="M23 14C18.58 14 15 17.58 15 22C15 26.42 18.58 30 23 30C27.42 30 31 26.42 31 22C31 17.58 27.42 14 23 14ZM24 26H22V22H24V26ZM24 20H22V18H24V20Z" fill="white"/>
-    </svg>
-  );
-};
-
-export const LeftBar = ({ selectedTab }: { selectedTab: Tab | null }) => {
-  const loggedIn = useBoundStore((x) => x.loggedIn);
-  const logOut = useBoundStore((x) => x.logOut);
-
-  const [moreMenuShown, setMoreMenuShown] = useState(false);
-  const [loginScreenState, setLoginScreenState] =
-    useState<LoginScreenState>("HIDDEN");
-
-  const bottomBarItems = useBottomBarItems();
-
-  return (
-    <>
-      <nav className="fixed bottom-0 left-0 top-0 hidden flex-col gap-5 border-r-2 border-[#e5e5e5] bg-white p-3 
-                     shadow-lg transition-all duration-300 md:flex md:w-16 lg:w-64 lg:p-5">
-        <Link
-          href="/dashboard"
-          className="mb-5 ml-2 mt-5 flex items-center justify-center lg:justify-start gap-2 text-2xl sm:text-3xl font-bold text-[#41D185]"
+    <div className="fixed bottom-0 left-0 right-0 z-10 flex h-16 flex-row justify-around border-t-2 border-gray-200 bg-white md:top-0 md:h-screen md:w-24 md:flex-col md:justify-start md:border-r-2 md:border-t-0 lg:w-64">
+      {/* Logo - uniquement visible sur les écrans moyens et grands */}
+      <div className="hidden items-center justify-center border-b-2 border-gray-200 px-5 py-8 pt-7 md:flex lg:justify-start">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#3AD278]">
+          <span className="text-white text-lg font-bold">I</span>
+        </div>
+        <div className="ml-1 hidden text-4xl font-bold tracking-tight text-[#3AD278] lg:block">
+          ikigai
+        </div>
+      </div>
+      
+      {/* Élément "Apprendre" */}
+      <Link
+        href="/learn"
+        className={`flex items-center justify-center py-3 md:px-5 md:py-5 lg:justify-start ${
+          selectedTab === "Apprendre"
+            ? "text-[#3AD278]"
+            : "text-gray-400 hover:text-gray-500"
+        }`}
+      >
+        <svg
+          className="h-[32px] w-[32px] md:h-[40px] md:w-[40px]"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" className="text-[#41D185]">
-            <path d="M16,2C8.268,2,2,8.268,2,16s6.268,14,14,14s14-6.268,14-14S23.732,2,16,2z M16,28C9.383,28,4,22.617,4,16 S9.383,4,16,4s12,5.383,12,12S22.617,28,16,28z"/>
-            <path d="M17 9L15 9 15 15 9 15 9 17 15 17 15 23 17 23 17 17 23 17 23 15 17 15z"/>
-          </svg>
-          <span className="hidden lg:block">IKIGAI</span>
-        </Link>
-        
-        <ul className="flex flex-col items-stretch gap-4 mt-2">
-          {bottomBarItems.map((item) => {
-            const isActive = item.name === selectedTab;
-            return (
-              <li key={item.href} className="flex flex-1">
-                <Link
-                  href={item.href}
-                  className={`flex grow items-center gap-3 rounded-xl border-2 px-2 py-3 lg:py-2 text-sm font-bold uppercase
-                            transition-all duration-300 ${
-                    isActive 
-                      ? "border-[#84d8ff] bg-[#ddf4ff] text-[#1cb0f6]" 
-                      : "border-transparent text-gray-400 hover:bg-gray-100"
-                  }`}
-                >
-                  <div className="flex justify-center w-full lg:w-auto">
-                    {item.icon}
-                    {isActive && (
-                      <div className="absolute w-2 h-2 bg-[#ff4b4b] rounded-full -mt-1 -mr-1"></div>
-                    )}
-                  </div>
-                  <span className="sr-only lg:not-sr-only">{item.name}</span>
-                </Link>
-              </li>
-            );
-          })}
-          
-          <div
-            className="relative flex grow cursor-pointer items-center gap-3 rounded-xl px-2 py-3 lg:py-2 font-bold uppercase 
-                     text-gray-400 hover:bg-gray-100 transition-all duration-300"
-            onClick={() => setMoreMenuShown((x) => !x)}
-            onMouseEnter={() => setMoreMenuShown(true)}
-            onMouseLeave={() => setMoreMenuShown(false)}
-            role="button"
-            tabIndex={0}
-          >
-            <div className="flex justify-center w-full lg:w-auto">
-              <LeftBarMoreMenuSvg />
-            </div>
-            <span className="sr-only lg:not-sr-only">Plus</span>
-            
-            <div
-              className={`absolute left-full top-0 min-w-[300px] rounded-xl border-2 border-gray-300 bg-white 
-                        text-left text-gray-500 shadow-lg transition-opacity duration-200 z-10
-                        ${moreMenuShown ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-              style={{ transform: 'translateX(8px)' }}
-            >
-              <div className="flex flex-col py-2">
-                <Link
-                  className="flex items-center gap-4 px-5 py-3 text-left hover:bg-gray-100 transition-colors"
-                  href="/about"
-                >
-                  <InfoIconSvg className="h-8 w-8" />
-                  <span className="font-medium">À propos d'IKIGAI</span>
-                </Link>
-                <Link
-                  className="flex items-center gap-4 px-5 py-3 text-left hover:bg-gray-100 transition-colors"
-                  href="/support"
-                >
-                  <SupportIconSvg className="h-8 w-8" />
-                  <span className="font-medium">Support</span>
-                </Link>
-              </div>
-              
-              <div className="flex flex-col border-t border-gray-200 py-2">
-                {!loggedIn && (
-                  <button
-                    className="px-5 py-3 text-left font-medium hover:bg-gray-100 transition-colors flex items-center"
-                    onClick={() => setLoginScreenState("SIGNUP")}
-                  >
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#58cc02] text-white mr-4">
-                      👤
-                    </span>
-                    Créer un profil
-                  </button>
-                )}
-                <Link
-                  className="px-5 py-3 text-left font-medium hover:bg-gray-100 transition-colors flex items-center"
-                  href={loggedIn ? "/settings/account" : "/settings/preferences"}
-                >
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#ff9600] text-white mr-4">
-                    ⚙️
-                  </span>
-                  Paramètres
-                </Link>
-                <Link
-                  className="px-5 py-3 text-left font-medium hover:bg-gray-100 transition-colors flex items-center"
-                  href="/help"
-                >
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1cb0f6] text-white mr-4">
-                    ❓
-                  </span>
-                  Aide
-                </Link>
-                
-                {!loggedIn && (
-                  <button
-                    className="px-5 py-3 text-left font-medium hover:bg-gray-100 transition-colors flex items-center"
-                    onClick={() => setLoginScreenState("LOGIN")}
-                  >
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1cb0f6] text-white mr-4">
-                      🔑
-                    </span>
-                    Se connecter
-                  </button>
-                )}
-                {loggedIn && (
-                  <button
-                    className="px-5 py-3 text-left font-medium hover:bg-gray-100 transition-colors flex items-center"
-                    onClick={logOut}
-                  >
-                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-[#ff4b4b] text-white mr-4">
-                      🚪
-                    </span>
-                    Se déconnecter
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </ul>
-      </nav>
-      <LoginScreen
-        loginScreenState={loginScreenState}
-        setLoginScreenState={setLoginScreenState}
-      />
-    </>
+          <path
+            d="M6.66663 35V30"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M20 35V25"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M33.3334 35V15"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.66663 20L19.5 7.16669C19.6422 7.02464 19.8105 6.91262 19.9955 6.83752C20.1806 6.76241 20.3789 6.72577 20.5793 6.73014C20.7797 6.7345 20.9761 6.77979 21.1573 6.86287C21.3385 6.94595 21.5011 7.06516 21.6366 7.21335L33.3333 20"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className="ml-3 text-lg font-bold hidden lg:inline">Apprendre</span>
+      </Link>
+
+      {/* Élément "Leaderboards" */}
+      <Link
+        href="/leaderboard"
+        className={`flex items-center justify-center py-3 md:px-5 md:py-5 lg:justify-start ${
+          selectedTab === "Leaderboards"
+            ? "text-[#3AD278]"
+            : "text-gray-400 hover:text-gray-500"
+        }`}
+      >
+        <svg
+          className="h-[32px] w-[32px] md:h-[40px] md:w-[40px]"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.3333 21.6667C13.3333 22.5507 13.6845 23.3986 14.3096 24.0237C14.9348 24.6488 15.7826 25 16.6666 25C17.5507 25 18.3985 24.6488 19.0236 24.0237C19.6488 23.3986 20 22.5507 20 21.6667C20 20.7826 19.6488 19.9348 19.0236 19.3097C18.3985 18.6845 17.5507 18.3333 16.6666 18.3333C15.7826 18.3333 14.9348 18.6845 14.3096 19.3097C13.6845 19.9348 13.3333 20.7826 13.3333 21.6667Z"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M6.66669 31.6667V13.3333L13.3334 6.66666H26.6667L33.3334 13.3333V31.6667C33.3334 32.5507 32.9822 33.3986 32.357 34.0237C31.7319 34.6488 30.8841 35 30 35H10C9.11598 35 8.26812 34.6488 7.64299 34.0237C7.01788 33.3986 6.66669 32.5507 6.66669 31.6667Z"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M16.6667 25V35"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M23.3333 25H27.5C28.163 25 28.7989 24.7366 29.2678 24.2678C29.7366 23.7989 30 23.163 30 22.5C30 21.837 29.7366 21.2011 29.2678 20.7322C28.7989 20.2634 28.163 20 27.5 20H23.3333V35"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className="ml-3 text-lg font-bold hidden lg:inline">Classements</span>
+      </Link>
+
+      {/* Élément "Profile" */}
+      <Link
+        href="/profile"
+        className={`flex items-center justify-center py-3 md:px-5 md:py-5 lg:justify-start ${
+          selectedTab === "Profile"
+            ? "text-[#3AD278]"
+            : "text-gray-400 hover:text-gray-500"
+        }`}
+      >
+        <svg
+          className="h-[32px] w-[32px] md:h-[40px] md:w-[40px]"
+          width="40"
+          height="40"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M33.3333 35V31.6667C33.3333 29.8986 32.631 28.2029 31.3807 26.9526C30.1305 25.7024 28.4348 25 26.6667 25H13.3333C11.5652 25 9.86952 25.7024 8.61928 26.9526C7.36904 28.2029 6.66666 29.8986 6.66666 31.6667V35"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M19.9999 18.3333C23.6818 18.3333 26.6666 15.3486 26.6666 11.6667C26.6666 7.98477 23.6818 5 19.9999 5C16.318 5 13.3333 7.98477 13.3333 11.6667C13.3333 15.3486 16.318 18.3333 19.9999 18.3333Z"
+            stroke="currentColor"
+            strokeWidth="3.33333"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className="ml-3 text-lg font-bold hidden lg:inline">Profil</span>
+      </Link>
+
+      {/* Badge XP - uniquement visible sur les écrans moyens et grands */}
+      <div className="hidden mt-auto mb-6 mx-auto md:flex items-center justify-center">
+        <div className="flex items-center justify-center bg-[#fff4db] rounded-lg px-3 py-2">
+          <StarSvg className="h-6 w-6 text-[#ff9600] mr-2" />
+          <span className="text-[#ff9600] font-bold">0 XP</span>
+        </div>
+      </div>
+    </div>
   );
 };

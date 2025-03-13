@@ -1,6 +1,204 @@
 import type { ComponentProps } from "react";
 import React from "react";
 
+// SVG Component for Close Icon
+export const CloseSvg = (props: React.SVGAttributes<SVGElement>) => {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+export const DoneSvg = (props: React.SVGAttributes<SVGElement>) => {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+      <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+};
+
+export const BigCloseSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="12" r="10" fill="currentColor" fillOpacity="0.2" />
+    <path d="M15 9l-6 6M9 9l6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+export const LessonTopBarHeart = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor" />
+  </svg>
+);
+
+export const LessonTopBarEmptyHeart = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" strokeWidth="2" fill="none" />
+  </svg>
+);
+
+export const CheckmarkSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const LockSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+    <path d="M8 11V7a4 4 0 118 0v4" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+export const StarSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor" />
+  </svg>
+);
+
+export const ActiveBookSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" fill="currentColor" />
+  </svg>
+);
+
+export const GoldenBookSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" fill="#FFD700" />
+  </svg>
+);
+
+export const BronzeLeagueSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width={props.width || "40"} height={props.height || "40"} viewBox="0 0 40 40" fill="none" {...props}>
+    <circle cx="20" cy="20" r="16" fill="#CD7F32" />
+    <circle cx="20" cy="20" r="12" fill="#E9967A" />
+    <path d="M15 26V14L25 20L15 26Z" fill="white" />
+  </svg>
+);
+
+export const EditPencilSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+export const EmptyFireSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 2c1 2 2 3.5 2 5 0 1.5-1 2-2 2-1 0-2-.5-2-2 0-1.5 1-3 2-5zm0 8c3 0 5 2 5 4.5S13.5 20 12 20s-5-2-5-5.5c0-2.5 1-6.5 2.5-6.5.75 0 1.25.5 1.5 1.5.25-1 .75-1.5 1.5-1.5z" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
+
+export const FireSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 2c1 2 2 3.5 2 5 0 1.5-1 2-2 2-1 0-2-.5-2-2 0-1.5 1-3 2-5zm0 8c3 0 5 2 5 4.5S13.5 20 12 20s-5-2-5-5.5c0-2.5 1-6.5 2.5-6.5.75 0 1.25.5 1.5 1.5.25-1 .75-1.5 1.5-1.5z" fill="currentColor" />
+  </svg>
+);
+
+export const LightningProgressSvg = ({ size = 24, ...props }: { size?: number } & React.SVGAttributes<SVGElement>) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M13 2L4.093 12.688l5.296 1.254L11 22l8.907-10.688-5.297-1.254L13 2z" fill="#FFD700" />
+  </svg>
+);
+
+export const EmptyMedalSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
+    <path d="M7 14l-3 7h6l2-5m5 0l2 5h6l-3-7" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+export const ProfileFriendsSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
+    <path d="M5 21v-2a7 7 0 0114 0v2" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+export const ProfileTimeJoinedSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+    <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+export const SettingsGearSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+    <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="2" />
+    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" strokeWidth="2" />
+  </svg>
+);
+
+export const LeaderboardBannerSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="300" height="150" viewBox="0 0 300 150" {...props}>
+    <rect width="300" height="150" rx="10" fill="#F8F8F8" />
+    <text x="150" y="75" fontSize="20" textAnchor="middle" fill="#333">Leaderboard Banner</text>
+  </svg>
+);
+
+export const LeaderboardExplanationSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="120" height="120" viewBox="0 0 120 120" {...props}>
+    <rect width="120" height="120" rx="10" fill="#F0F0F0" />
+    <text x="60" y="60" fontSize="12" textAnchor="middle" fill="#555">Leaderboard Info</text>
+  </svg>
+);
+
+export const LockedLeaderboardSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="240" height="200" viewBox="0 0 240 200" {...props}>
+    <rect width="240" height="200" rx="10" fill="#F0F0F0" />
+    <circle cx="120" cy="90" r="40" fill="#DDD" />
+    <rect x="110" y="80" width="20" height="30" rx="5" fill="#AAA" />
+    <circle cx="120" cy="90" r="5" fill="#F0F0F0" />
+  </svg>
+);
+
+export const LockedLeagueSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <circle cx="20" cy="20" r="18" fill="#DADADA" />
+    <circle cx="20" cy="20" r="15" fill="#EEEEEE" />
+    <circle cx="20" cy="20" r="8" fill="#DADADA" />
+  </svg>
+);
+
+export const FirstPlaceSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <circle cx="20" cy="20" r="20" fill="#FFD700" />
+    <text x="20" y="25" fontSize="14" textAnchor="middle" fill="#FFF" fontWeight="bold">1</text>
+  </svg>
+);
+
+export const SecondPlaceSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <circle cx="20" cy="20" r="20" fill="#C0C0C0" />
+    <text x="20" y="25" fontSize="14" textAnchor="middle" fill="#FFF" fontWeight="bold">2</text>
+  </svg>
+);
+
+export const ThirdPlaceSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <circle cx="20" cy="20" r="20" fill="#CD7F32" />
+    <text x="20" y="25" fontSize="14" textAnchor="middle" fill="#FFF" fontWeight="bold">3</text>
+  </svg>
+);
+
+// Ajout des SVG manquants dans WideIslandSvg
+export const TreasureChestSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <rect x="5" y="15" width="30" height="20" rx="2" fill="#8B4513" />
+    <rect x="5" y="15" width="30" height="5" rx="1" fill="#A0522D" />
+    <rect x="19" y="15" width="2" height="20" fill="#A0522D" />
+    <circle cx="10" cy="25" r="2" fill="#FFD700" />
+    <circle cx="30" cy="25" r="2" fill="#FFD700" />
+  </svg>
+);
+
+export const TrophyChestSvg = (props: React.SVGAttributes<SVGElement>) => (
+  <svg width="40" height="40" viewBox="0 0 40 40" {...props}>
+    <path d="M20 5L25 15H15L20 5Z" fill="#FFD700" />
+    <rect x="15" y="15" width="10" height="15" fill="#FFD700" />
+    <rect x="18" y="30" width="4" height="5" fill="#FFD700" />
+    <rect x="16" y="35" width="8" height="2" fill="#FFD700" />
+  </svg>
+);
+
 export const GlobeSvg = (props: ComponentProps<"svg">) => {
   return (
     <svg
